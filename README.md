@@ -16,3 +16,4 @@ File Name: StepCount.csv
 Source Name, Source Version, Creation Date, Value
 Gokila’s Apple Watch, 5.1.3, 2019-03-05 10:55:24, 30
 ```
+The generated file `StepCount.csv` is added in the directory as well.
