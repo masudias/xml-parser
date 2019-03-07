@@ -31,9 +31,10 @@ public class CSVInput {
 
     public void setCreationDate(String creationDate) {
         try {
-            DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm", Locale.ENGLISH);
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
             Date date = df.parse(creationDate);
-            this.creationDate = df.format(date);
+            DateFormat targetDf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            this.creationDate = targetDf.format(date);
         } catch (Exception e) {
             e.printStackTrace();
         }
