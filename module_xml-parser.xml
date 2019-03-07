@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_xml-parser" default="compile.module.xml-parser">
+  <dirname property="module.xml-parser.basedir" file="${ant.file.module_xml-parser}"/>
+  
+  <property name="module.jdk.home.xml-parser" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.xml-parser" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.xml-parser" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.xml-parser" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="xml-parser.output.dir" value="${module.xml-parser.basedir}/out/production/xml-parser"/>
+  <property name="xml-parser.testoutput.dir" value="${module.xml-parser.basedir}/out/test/xml-parser"/>
+  
+  <path id="xml-parser.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="xml-parser.module.production.classpath">
+    <path refid="${module.jdk.classpath.xml-parser}"/>
+  </path>
+  
+  <path id="xml-parser.runtime.production.module.classpath">
+    <pathelement location="${xml-parser.output.dir}"/>
+  </path>
+  
+  <path id="xml-parser.module.classpath">
+    <path refid="${module.jdk.classpath.xml-parser}"/>
+    <pathelement location="${xml-parser.output.dir}"/>
+  </path>
+  
+  <path id="xml-parser.runtime.module.classpath">
+    <pathelement location="${xml-parser.testoutput.dir}"/>
+    <pathelement location="${xml-parser.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.xml-parser">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.xml-parser">
+    <patternset refid="excluded.from.module.xml-parser"/>
+  </patternset>
+  
+  <path id="xml-parser.module.sourcepath">
+    <dirset dir="${module.xml-parser.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.xml-parser" depends="compile.module.xml-parser.production,compile.module.xml-parser.tests" description="Compile module xml-parser"/>
+  
+  <target name="compile.module.xml-parser.production" depends="register.custom.compilers" description="Compile module xml-parser; production classes">
+    <mkdir dir="${xml-parser.output.dir}"/>
+    <javac2 destdir="${xml-parser.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.xml-parser}/javac">
+      <compilerarg line="${compiler.args.xml-parser}"/>
+      <bootclasspath refid="xml-parser.module.bootclasspath"/>
+      <classpath refid="xml-parser.module.production.classpath"/>
+      <src refid="xml-parser.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.xml-parser"/>
+    </javac2>
+    
+    <copy todir="${xml-parser.output.dir}">
+      <fileset dir="${module.xml-parser.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.xml-parser.tests" depends="register.custom.compilers,compile.module.xml-parser.production" description="compile module xml-parser; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.xml-parser" description="cleanup module">
+    <delete dir="${xml-parser.output.dir}"/>
+    <delete dir="${xml-parser.testoutput.dir}"/>
+  </target>
+</project>
