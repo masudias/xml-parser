@@ -18,4 +18,4 @@ Gokila’s Apple Watch, 5.1.3, 2019-03-05 10:55:24, 30
 ```
 The generated file `StepCount.csv` is added in the directory as well.
 
-There is another main class in this project which is `ReadInfoPlist`. This contains the parsing from a plist file where xmlwise library from Google was used for parsing. 
+There is another main class in this project which is `ReadInfoPlist`. This contains the parsing from a plist file where [xmlwise library](https://code.google.com/archive/p/xmlwise/) from Google was used for parsing. 
