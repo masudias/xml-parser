@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class ReadXMLFile {
 
-    public static ArrayList<CSVInput> csvInputs = new ArrayList<>();
+    public static ArrayList<CSVInputForStepCount> csvInputForStepCounts = new ArrayList<>();
 
     public static void main(String argv[]) {
 
@@ -34,18 +34,18 @@ public class ReadXMLFile {
                     if (type.equals("HKQuantityTypeIdentifierStepCount")) {
                         count++;
 
-                        CSVInput input = new CSVInput();
+                        CSVInputForStepCount input = new CSVInputForStepCount();
                         input.setSourceName(eElement.getAttribute("sourceName"));
                         input.setSourceVersion(eElement.getAttribute("sourceVersion"));
                         input.setCreationDate(eElement.getAttribute("creationDate"));
                         input.setValue(eElement.getAttribute("value"));
 
-                        csvInputs.add(input);
+                        csvInputForStepCounts.add(input);
                     }
                 }
             }
 
-            CSVWriter.createCSVFile("StepCount.csv", csvInputs);
+            CSVWriterForStepCount.createCSVFile("StepCount.csv", csvInputForStepCounts);
             System.out.println(count + "");
         } catch (Exception e) {
             e.printStackTrace();
