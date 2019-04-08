@@ -37,7 +37,7 @@ public class ReadInfoPlist {
                         inputForPList.setNetworkUsage(networkUsage);
                         inputForPList.setLastRoamed((Date) insideRoamedObj.get("lastRoamed"));
 
-                        if (!inputForPList.isAllFieldsAreNull()) csvInputForPLists.add(inputForPList);
+                        csvInputForPLists.add(inputForPList);
                     }
 
                 } else {
@@ -49,7 +49,7 @@ public class ReadInfoPlist {
                     inputForPList.setNetworkUsage(networkUsage);
                     inputForPList.setLastRoamed(null);
 
-                    if (!inputForPList.isAllFieldsAreNull()) csvInputForPLists.add(inputForPList);
+                    csvInputForPLists.add(inputForPList);
                 }
             }
 
